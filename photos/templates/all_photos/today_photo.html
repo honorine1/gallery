@@ -4,5 +4,30 @@
 {{block.super}}
 
 
-<h1>my photos</h1>
+
+<div class="container">
+
+  <!-- Looping through news   -->
+  {% for image_item in photos %}
+
+  <div class="row">
+    <!-- displaying News articles -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h2 class="text-center"> {{ image_item.title }} </h2>
+      <h2 class="text-center"> {{ image_item.image_name }} </h2>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <img src="{{image_item.image.url}}" class="img-responsive" alt="Image">
+      </div>
+
+  </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No image Items</h2>
+  </div>
+  {% endfor %}
+
+</div>
+
 {% endblock %}
