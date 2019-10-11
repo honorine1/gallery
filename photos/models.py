@@ -18,6 +18,12 @@ class Category(models.Model):
     cat_name = models.CharField(max_length = 40)
     def __str__(self):
         return self.cat_name
+
+    @classmethod
+    def search_by_image_category(cls,search_term):
+        photos =cls.objects.filter(image_category__icontains=search_term)
+        return photos
+
     
     
 
@@ -38,3 +44,4 @@ class Image(models.Model):
             photos = cls.objects.filter(pub_date__date = today)
             return photos
 
+  
