@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
+from .models import Image
 import datetime as dt
 
 
@@ -12,8 +13,8 @@ def welcome(request):
 def photos_of_day(request):
    
     date = dt.date.today()
-   
-    return render(request, 'all_photos/today_photo.html', {"date": date})
+    photos = Image.todays_photos()
+    return render(request, 'all_photos/today_photo.html', {"date": date,"photos":photos})
   
     
     
@@ -43,9 +44,11 @@ def past_days_photos(request, past_date):
         assert False
 
     if date == dt.date.today():
-        return redirect(photos_of_day)
+        return redirect(photos_today)
 
-    return render(request, 'all_photos/past_photos.html', {"date": date})
+    photos = Image.days_photos(date)
+
+    return render(request, 'all_photos/past_photos.html', {"date": date,"photos":photos})
 
 
 
