@@ -2,22 +2,36 @@
 
 {% block content %}
 {{block.super}}
+<script>
+  function copyImageLink() {
+    console.log("copied");
+
+    var copyText = document.getElementById(myInput);
+    copyText.select();
+    document.execCommand("copy");
+    alert("imageLink copied to clipboard: " + copyText.value);
+  }
+  </script>
+
+
+
 
 
 
 <div class="container-fluid">
-
+<div class="text1">
+<h2 >Welcome to my photo Gallery,</h2>
+<h3>Search your favorite one by entering the image's category!!!</h3>
+</div>
   <!-- Looping through news   -->
-  <div class="row">
+  <div class="row" id="rower1">
   {% for image_item in photos %}
-
-  
-    <!-- displaying photos -->
-   
-  
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<div id="photo1" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
         <a  href="{% url 'image' image_item.id %}"><img src="{{image_item.image.url}}" class="img-responsive" alt="Image"></a><br>
-    </div>
+        <input type="text" value="http://127.0.0.1:8000{{image_item.image.url}}" id="myInput">
+        <br>
+        <button class="rounded btn-primary" onclick=copyImageLink()>📋Copy Image Link</button>
+</div>
 
   {% empty %}
   <div class="row">
