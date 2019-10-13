@@ -5,21 +5,46 @@
   <div class="row">
     {% if images%}
       <h2>Found {{ images|length }} of searched term {{message}}</h2>
+      
     {% else %}
       <h2> Found 0 images for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
-  <div class="row">
+
+ 
+  <div id="rower"class="row">
+      {% if images %}
+      {% for image in images %} 
+  <div class="card">
+      <h4 class="card-title">name: {{image.image_name}}</h4>
+      <img src="{{image.image.url}}" class="img-responsive" alt="Image"><br>
+      
+      <div class="card-body">
+        
+        <h4 class="card-text">image description:{{image.image_description}}</h4>
+        <h4 class="card-text">category: {{image.image_category}}</h4>
+        <h4 class="card-text">Location: {{image.image_location}}</h4>
+        <p class="card-text"><small class="text-muted">Posted {{image.pub_date|timesince}} ago</small></p>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+ 
+
+  
+</div>
+{% endblock %}
+  <!-- <div class="row">
 
   {% if images %}
     {% for image in images %}
       <div class="col-sm-6 col-md-3">
           <h1>{{image.image_name}}</h1>
+          <img src="{{image.image.url}}" class="img-responsive" alt="Image"><br>
       </div>
     {% endfor %}
-  {% endif %}
-  </div>
-</div>
-{% endblock %}
+  {% endif %} -->
+  <!-- </div> -->
