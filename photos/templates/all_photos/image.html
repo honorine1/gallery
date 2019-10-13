@@ -2,25 +2,25 @@
 
  {% block content %}
 
- <div class="container">
 
-   <div class="row">
-     <img src="{{image.image.url}}"  class="img-responsive" alt="">
-   </div>
-<!-- 
-   <div class="row">
-     <h1 class="text-center">{{image.image}}</h1>
-   </div> -->
 
-   <div class="row">
-        <h1 class="text-center">{{image.image_description}}</h1>
-     
-   </div>
+ <div class="container-fluid">
 
-   <div class="row">
-     <p>Posted {{image.pub_date|timesince}} by {{image.editor.username}}</p>
-   </div>
+  <div class="card">
+    <h4 class="card-title">name: {{image.image_name}}</h4>
+    <img class="images" src="{{image.image.url}}"  class="img-responsive" alt="">
+    <div class="card-body">
+      
+      <h4 class="card-text">image description:{{image.image_description}}</h4>
+      <h4 class="card-text">category: {{image.image_category}}</h4>
+      <h4 class="card-text">Location: {{image.image_location}}</h4>
+      <p class="card-text"><small class="text-muted">Posted {{image.pub_date|timesince}} ago</small></p>
+    </div>
+  </div>
 
- </div>
+
+  
+
+   </div> 
 
  {% endblock %}
