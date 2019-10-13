@@ -1,4 +1,52 @@
-h1
-{
-  color: green;
+
+.image1{
+  width:100%;
+
+}
+/* .container-fluid{
+  background-color:black;
+} */
+#rower1{
+  background-color:black;
+  padding-top:50px;
+}
+body{
+  background-color:solid grey;
+}
+.card{
+  padding-left:300px;
+  background-color:  black;
+  border-radius: 20px;
+  margin-top:50px;
+  padding-bottom: 20px;
+  
+
+}
+.card img{
+  width:500px;
+  height:250px;
+ 
+}
+.card-title{
+  padding-top:50px;
+  padding-bottom:50px;
+  padding-left:200px;
+  color:white;
+  
+}
+.card-text{
+  margin-left:100px;
+  color:white;
+}
+.text1{
+  text-align:center;
+  color:white;
+  background-color:black;
+  padding-top:20px;
+  padding-bottom:20px;
+  margin-bottom:5px;
+  border-radius:12px;
+}
+#myInput{
+  text-align: center;
 }
