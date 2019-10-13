@@ -2,7 +2,26 @@
 
 {% block content %}
 {{block.super}}
-<h1>recent photos</h1>
 
+
+
+<div class="container-fluid">
+<div class="text1">
+<h2 >Recent photos</h2>
+</div>
+  <!-- Looping through news   -->
+  <div class="row" id="rower1">
+  {% for image_item in photos %}
+<div id="photo1" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <a  href="{% url 'image' image_item.id %}"><img src="{{image_item.image.url}}" class="img-responsive" alt="Image"></a><br>
+    </div>
+
+  {% empty %}
+  <div class="row">
+    <h2 class="text-center">There No image Items</h2>
+  </div>
+  {% endfor %}
+</div>
+</div>
 
 {% endblock %}
