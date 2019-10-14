@@ -55,9 +55,19 @@ class Image(models.Model):
             photos = cls.objects.filter(pub_date__date = today)
             return photos
 
+    def pastdays_photos(cls):
+            pastday = dt.date.pastday()
+            photos = cls.objects.filter(pub_date__date = pastday)
+            return photos
+
     @classmethod
     def search_by_category_name(cls,search_term):
         photos =cls.objects.filter(image_category__category_name__contains=search_term)
+        return photos
+
+    @classmethod
+    def get_all_photos(cls):
+        photos = cls.objects.all()
         return photos
 
 
