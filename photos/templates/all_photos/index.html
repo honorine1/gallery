@@ -1,49 +1,84 @@
-<!-- {% extends 'base.html' %}
-
+{%extends 'all_photos/base.html'%}
 
 {% block content %}
-
-
+{{block.super}}
 <script>
-function copyLink(imageid) {
-  console.log("copied");
-  var copyText = document.getElementById(imageid);
-  copyText.select();
-  document.execCommand("copy");
-  alert("Link copied to clipboard: " + copyText.value);
-}
+  function copyImageLink() {
+    console.log("copied");
+
+    var copyText = document.getElementById(myInput);
+    copyText.select();
+    document.execCommand("copy");
+    alert("imageLink copied to clipboard: " + copyText.value);
+  }
 </script>
 
 
 
 
 
-<div class="container">
-  <div class="row">
-      <h2>{{message}}</h2>
+
+<div class="container-fluid">
+  <div class="text1">
+    <h2>Welcome to my photo Gallery,</h2>
+    <h3>Search your favorite one by entering the image's category!!!</h3>
   </div>
 
-  <div class="masonry text-center">
-    {% for image in all_photoss %}
-    <div class="item animated zoomIn">
-      <a href="{{image.image.url}}"  data-fancybox="images" data-buttons='["zoom","slideShow","fullScreen","thumbs","share","close"]' data-caption='<a href="{{image.image.url}}"><h6>{{image.image_name}}</h6></a>
-                                                                    <p>{{image.image_description}}</p>
-                                                                    <p>Location: {{image.image_location}} / Category: {{image.image_category}}</p>
-                                                                    <button class="rounded btn-primary" onclick=copyLink("{{image.id}}-url") >📋Copy Link</button>'>
 
-        <img class="rounded image" src="{{image.image_path.url}}" alt="{{image.image_name}}">
-      </a>
-      <input type="text" id="{{image.id}}-url" class="d-none form-control input-sm " value="https://gallery-unchained.herokuapp.com{{image.image_path.url}}">
-      <img class="img-fluid rounded image" src="{{image.image_path.url}}" alt="{{image.image_name}}"> -->
-      <!-- <div class="description">
-        <h6 class="text" >{{image.image_name}}</h6>
+  <div class="row" id="rower1" >
+   
+    {% for image_item in photos %}
+    <div class="col-md-4">
+       <p style="font-size: 20px;padding-left:100px;color:white;font-family: 'Sacramento', cursive">
+        {{image_item.image_name}}</p>
+      <img data-toggle="modal" data-target="#{{image_item.id}}" style="margin-left: 50px;margin-bottom: 50px" src="{{image_item.image.url}}"
+        class="img-responsive" alt="Image">
+      
+
+
+      <!-- Modal  -->
+      <div class="modal fade" id="{{image_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="padding-right: 500px">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="font-family: 'Philosopher', sans-serif;font-size: 15px">{{image_item.image_name}}
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <img style="border-radius: 10px" src="{{image_item.image.url}}" alt="image"> <br><br>
+              <p style="font-size: 20px;font-family: 'Sacramento', cursive">
+                image description:{{image_item.image_description}}</p>
+              <p style="font-size: 20px;font-family: 'Sacramento', cursive">
+                image category:{{image_item.image_category}}</p>
+              <p style="font-size: 20px;font-family: 'Sacramento', cursive">
+                image location:{{image_item.image_location}}</p>
+              
+              <input type="text" value="http://127.0.0.1:8000{{image_item.image.url}}" id="myInput" style="font-family: 'Sacramento', cursive;font-size: 20px">
+              <br>
+              <button class="rounded btn-primary" onclick=copyImageLink()>📋Copy Image Link</button>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-family: 'Sacramento', cursive;font-size: 20px">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    {% endfor %}
+      {% endfor%}
+    
   </div>
-</div> 
 
+</div>
 
 
 {% endblock %}
---> 
