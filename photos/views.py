@@ -5,9 +5,13 @@ import datetime as dt
 
 
 
-def welcome(request):
+# def welcome(request):
   
-    return render (request, 'welcome.html')
+#     return render (request, 'welcome.html')
+
+def index(request):
+    photos = Image.get_all_photos()
+    return render (request, 'all_photos/index.html',{"photos":photos})
 
 
 def photos_of_day(request):
@@ -32,23 +36,6 @@ def convert_dates(dates):
 
     
    # View Function to present news from past days
-def past_days_photos(request, past_date):
-
-    try:
-        # Converts data from the string Url
-        date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
-
-    except ValueError:
-        # Raise 404 error when ValueError is thrown
-        raise Http404()
-        assert False
-
-    if date == dt.date.today():
-        return redirect(photos_today)
-
-    photos = Image.days_photos(date)
-
-    return render(request, 'all_photos/past_photos.html', {"date": date,"photos":photos})
 
 def search_images(request):
     if 'image' in request.GET and request.GET["image"]:
